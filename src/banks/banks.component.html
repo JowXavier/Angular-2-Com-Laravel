@@ -11,32 +11,29 @@
 
   <div class="card col s12">
     <div class="card-content">
+      <search [resource]="'banks'" (onSearch)="searched($event)"></search> 
       <table class="highlight">
         <thead>
           <tr>
-            <th>Contas</th>
+            <th>Bancos</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let account of accounts.data" [routerLink]="['/accounts/' + account.id]">
+          <tr *ngFor="let bank of banks.data">
             <td>
-              {{ account.title }}
-              <small>agência: {{ account.agency }} / conta: {{ account.account_number }} / código do banco: {{ account.bank.code }}</small>
+              {{ bank.title }} - {{ bank.code }}
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="card-action">
-      <a [routerLink]="['/accounts/new']">Nova conta</a>
     </div>
   </div>
 </div>
 
 <paginate
   (onChangePage)="pageChanged($event)"
-  [total]="accounts.total"
-  [activePage]="accounts.current_page"
-  [totalPage]="accounts.last_page"
-  [resource]="'accounts'"
+  [total]="banks.total"
+  [activePage]="banks.current_page"
+  [totalPage]="banks.last_page"
+  [resource]="'banks'"
 ></paginate>
