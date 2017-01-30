@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import '../../public/css/styles.css';
 import 'materialize-css/dist/css/materialize.min.css';
 
@@ -8,4 +9,13 @@ import 'materialize-css/dist/css/materialize.min.css';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent { }
+export class AppComponent { 
+	constructor (
+		private router: Router
+	) {}
+	
+	public logout() {
+		localStorage['tokens'] = '';
+		this.router.navigate(['/login']);
+	}	
+}

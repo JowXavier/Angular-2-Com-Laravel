@@ -14,6 +14,10 @@ export class AuthenticationHttpService extends Http {
 	) {
 		super(backend, defaultOptions)
 
+		if(localStorage['tokens'] == '') {
+			this.router.navigate(['/login']);
+		}
+
 		let token = localStorage['tokens'] ? JSON.parse(localStorage['tokens']) : {};
 		if (token.access_token) {
 			this.setAccessToken(token.access_token);
